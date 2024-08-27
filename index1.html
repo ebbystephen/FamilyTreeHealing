@@ -168,16 +168,16 @@
 
             // Post the result message to WhatsApp
             const whatsappMessage = encodeURIComponent(resultMessage);
-            const whatsappGroupLink = `https://chat.whatsapp.com/Hsj6K42JJiVBJeWa1zKq6Y?text=${whatsappMessage}`;
+            const whatsappGroupLink = `https://wa.me/919048668408?text=${whatsappMessage}`;
             window.open(whatsappGroupLink, '_blank');
 
             // Display the result
             document.getElementById('result').textContent = `Your message: ${resultMessage}`;
 
             // Automatically reset the form after posting the message
-            setTimeout(function () {
-                document.getElementById('resetBtn').click();
-            }, 500); // Delay to ensure the WhatsApp link is opened before resetting
+            //setTimeout(function () {
+            //    document.getElementById('resetBtn').click();
+            //}, 500); // Delay to ensure the WhatsApp link is opened before resetting
         });
 
         // Reset button event handler
