@@ -67,12 +67,6 @@
                 const emojiDiv = document.createElement('div');
                 emojiDiv.classList.add('emoji-item');
 
-                // Create checkbox
-                const checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
-                checkbox.id = `emoji${index}`;
-                checkbox.dataset.emoji = item.emoji;
-
                 // Create label for emoji and text
                 const label = document.createElement('label');
                 label.htmlFor = `emoji${index}`;
@@ -85,7 +79,7 @@
                 minusButton.onclick = function () {
                     const countInput = document.getElementById(`count${index}`);
                     let currentValue = parseInt(countInput.value);
-                    if (currentValue > 1) {
+                    if (currentValue > 0) {
                         countInput.value = currentValue - 1;
                     }
                 };
@@ -93,7 +87,7 @@
                 // Create number input (readonly)
                 const numberInput = document.createElement('input');
                 numberInput.type = 'text';
-                numberInput.value = 1;
+                numberInput.value = 0;
                 numberInput.readOnly = true;
                 numberInput.id = `count${index}`;
 
@@ -108,7 +102,6 @@
                 };
 
                 // Append elements to the emojiDiv
-                emojiDiv.appendChild(checkbox);
                 emojiDiv.appendChild(label);
                 emojiDiv.appendChild(minusButton);
                 emojiDiv.appendChild(numberInput);
@@ -129,12 +122,11 @@
 
             // Loop through each emoji item
             emojiItems.forEach((item, index) => {
-                const checkbox = item.querySelector('input[type="checkbox"]');
-                const count = item.querySelector('input[type="text"]').value;
-                const emoji = checkbox.dataset.emoji;
+                const count = parseInt(item.querySelector('input[type="text"]').value);
+                const emoji = emojis[index].emoji;
 
-                // If the checkbox is checked, append the emoji to the message
-                if (checkbox.checked) {
+                // If count is greater than 0, append the emoji to the message
+                if (count > 0) {
                     for (let i = 0; i < count; i++) {
                         resultMessage += emoji;
                     }
