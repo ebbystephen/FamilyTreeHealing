@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emoji Selector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .emoji-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+            .emoji-item label {
+                margin-right: 10px;
+            }
+
+            .emoji-item button {
+                margin-right: 5px;
+                padding: 5px 10px;
+                font-size: 16px;
+            }
+
+            .emoji-item input[type="text"] {
+                width: 50px;
+                text-align: center;
+                margin-right: 10px;
+            }
+
+        #submitBtn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Emoji Selector</h1>
+    <form id="emojiForm"></form>
+    <button type="button" id="submitBtn">Submit</button>
+
+    <div id="result"></div>
+
+    <script>
+        // Store emojis and associated text in a local variable
+        const emojis = [
+            { emoji: "😊", text: "Smiling Face" },
+            { emoji: "😂", text: "Laughing Face" },
+            { emoji: "❤️", text: "Heart" },
+            { emoji: "👍", text: "Thumbs Up" }
+        ];
+
+        // Function to dynamically generate the form
+        function generateEmojiForm() {
+            const form = document.getElementById('emojiForm');
+            emojis.forEach((item, index) => {
+                const emojiDiv = document.createElement('div');
+                emojiDiv.classList.add('emoji-item');
+
+                // Create checkbox
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.id = `emoji${index}`;
+                checkbox.dataset.emoji = item.emoji;
+
+                // Create label for emoji and text
+                const label = document.createElement('label');
+                label.htmlFor = `emoji${index}`;
+                label.textContent = `${item.emoji} ${item.text}`;
+
+                // Create - button
+                const minusButton = document.createElement('button');
+                minusButton.type = 'button';
+                minusButton.textContent = '-';
+                minusButton.onclick = function () {
+                    const countInput = document.getElementById(`count${index}`);
+                    let currentValue = parseInt(countInput.value);
+                    if (currentValue > 1) {
+                        countInput.value = currentValue - 1;
+                    }
+                };
+
+                // Create number input (readonly)
+                const numberInput = document.createElement('input');
+                numberInput.type = 'text';
+                numberInput.value = 1;
+                numberInput.readOnly = true;
+                numberInput.id = `count${index}`;
+
+                // Create + button
+                const plusButton = document.createElement('button');
+                plusButton.type = 'button';
+                plusButton.textContent = '+';
+                plusButton.onclick = function () {
+                    const countInput = document.getElementById(`count${index}`);
+                    let currentValue = parseInt(countInput.value);
+                    countInput.value = currentValue + 1;
+                };
+
+                // Append elements to the emojiDiv
+                emojiDiv.appendChild(checkbox);
+                emojiDiv.appendChild(label);
+                emojiDiv.appendChild(minusButton);
+                emojiDiv.appendChild(numberInput);
+                emojiDiv.appendChild(plusButton);
+
+                // Append emojiDiv to the form
+                form.appendChild(emojiDiv);
+            });
+        }
+
+        // Call the function to generate the form
+        generateEmojiForm();
+
+        document.getElementById('submitBtn').addEventListener('click', function () {
+            // Get all emoji items
+            const emojiItems = document.querySelectorAll('.emoji-item');
+            let resultMessage = '';
+
+            // Loop through each emoji item
+            emojiItems.forEach((item, index) => {
+                const checkbox = item.querySelector('input[type="checkbox"]');
+                const count = item.querySelector('input[type="text"]').value;
+                const emoji = checkbox.dataset.emoji;
+
+                // If the checkbox is checked, append the emoji to the message
+                if (checkbox.checked) {
+                    for (let i = 0; i < count; i++) {
+                        resultMessage += emoji;
+                    }
+                }
+            });
+
+            // Display the result
+            document.getElementById('result').textContent = `Your message: ${resultMessage}`;
+        });
+    </script>
+</body>
+</html>
