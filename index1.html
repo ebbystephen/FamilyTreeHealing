@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emoji Selector</title>
+    <title>Family tree healing</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -48,7 +48,7 @@
     <h1>Emoji Selector</h1>
     <form id="emojiForm"></form>
     <button type="button" id="submitBtn">Submit</button>
-
+    <div><i>ഏതു പ്രാർത്ഥന ചൊല്ലുമ്പോളും അവസാനം നമ്മുടെ മരിച്ചു പോയ പൂര്‍വ്വ തലമുറയുടെ വിശുദ്ധികരണത്തിന് വേണ്ടി എന്ന് പറഞ്ഞു കാഴ്ച വെക്കണം.</i></div>
     <div id="result"></div>
     <script>
         // Store emojis and associated text in a local variable
@@ -67,6 +67,25 @@
             { emoji: "🛡️", text: "സങ്കീര്‍ത്തനങ്ങള്‍ 91" }
         ];
 
+        // Function to save to local storage
+        function saveToLocalStorage() {
+            const emojiItems = document.querySelectorAll('.emoji-item input[type="text"]');
+            const emojiCounts = {};
+            emojiItems.forEach((item, index) => {
+                emojiCounts[emojis[index].emoji] = item.value;
+            });
+            localStorage.setItem('emojiCounts', JSON.stringify(emojiCounts));
+        }
+
+        // Function to load from local storage
+        function loadFromLocalStorage() {
+            const storedCounts = JSON.parse(localStorage.getItem('emojiCounts')) || {};
+            const emojiItems = document.querySelectorAll('.emoji-item input[type="text"]');
+            emojiItems.forEach((item, index) => {
+                item.value = storedCounts[emojis[index].emoji] || 0;
+            });
+        }
+
         // Function to dynamically generate the form
         function generateEmojiForm() {
             const form = document.getElementById('emojiForm');
@@ -76,7 +95,6 @@
 
                 // Create label for emoji and text
                 const label = document.createElement('label');
-                label.htmlFor = `emoji${index}`;
                 label.textContent = `${item.emoji} ${item.text}`;
 
                 // Create - button
@@ -88,6 +106,7 @@
                     let currentValue = parseInt(countInput.value);
                     if (currentValue > 0) {
                         countInput.value = currentValue - 1;
+                        saveToLocalStorage();
                     }
                 };
 
@@ -106,6 +125,7 @@
                     const countInput = document.getElementById(`count${index}`);
                     let currentValue = parseInt(countInput.value);
                     countInput.value = currentValue + 1;
+                    saveToLocalStorage();
                 };
 
                 // Append elements to the emojiDiv
@@ -117,6 +137,9 @@
                 // Append emojiDiv to the form
                 form.appendChild(emojiDiv);
             });
+
+            // Load stored values after generating the form
+            loadFromLocalStorage();
         }
 
         // Call the function to generate the form
@@ -129,7 +152,7 @@
 
             // Loop through each emoji item
             emojiItems.forEach((item, index) => {
-                const count = parseInt(item.querySelector('input[type="text"]').value);
+                const count = parseInt(item.value);
                 const emoji = emojis[index].emoji;
 
                 // If count is greater than 0, append the emoji to the message
@@ -140,8 +163,24 @@
                 }
             });
 
+            // Post the result message to WhatsApp
+            const whatsappMessage = encodeURIComponent(resultMessage);
+            const whatsappGroupLink = `https://wa.me/?text=${whatsappMessage}`;
+            window.open(whatsappGroupLink, '_blank');
+
             // Display the result
             document.getElementById('result').textContent = `Your message: ${resultMessage}`;
+        });
+
+        // Reset button event handler
+        document.getElementById('resetBtn').addEventListener('click', function () {
+            if (confirm("Are you sure you want to reset all values to 0?")) {
+                const emojiItems = document.querySelectorAll('.emoji-item input[type="text"]');
+                emojiItems.forEach((item) => {
+                    item.value = 0;
+                });
+                saveToLocalStorage();
+            }
         });
     </script>
 </body>
