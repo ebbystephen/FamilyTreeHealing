@@ -47,8 +47,9 @@
 <body>
     <h1>Family tree healing</h1>
     <form id="emojiForm"></form>
-    <button type="button" id="submitBtn">Submit</button>
     <div><i>ഏതു പ്രാർത്ഥന ചൊല്ലുമ്പോളും അവസാനം നമ്മുടെ മരിച്ചു പോയ പൂര്‍വ്വ തലമുറയുടെ വിശുദ്ധികരണത്തിന് വേണ്ടി എന്ന് പറഞ്ഞു കാഴ്ച വെക്കണം.</i></div>
+    <button type="button" id="submitBtn">Submit</button>
+    <button type="button" id="resetBtn">Reset</button>
     <div id="result"></div>
     <script>
         // Store emojis and associated text in a local variable
@@ -147,7 +148,7 @@
 
         document.getElementById('submitBtn').addEventListener('click', function () {
             // Get all emoji items
-            const emojiItems = document.querySelectorAll('.emoji-item');
+            const emojiItems = document.querySelectorAll('.emoji-item input[type="text"]');
             let resultMessage = '';
 
             // Loop through each emoji item
@@ -170,6 +171,11 @@
 
             // Display the result
             document.getElementById('result').textContent = `Your message: ${resultMessage}`;
+
+            // Automatically reset the form after posting the message
+            setTimeout(function () {
+                document.getElementById('resetBtn').click();
+            }, 500); // Delay to ensure the WhatsApp link is opened before resetting
         });
 
         // Reset button event handler
