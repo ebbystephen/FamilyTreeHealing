@@ -153,14 +153,19 @@ document.getElementById('submitBtn').addEventListener('click', function () {
 
     //alert(resultMessage);
 
-    const phoneNumber =  localStorage.getItem('whatsappNumber')
-    // Post the result message to WhatsApp
-    const whatsappMessage = encodeURIComponent(resultMessage);
-    const whatsappGroupLink = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
-    window.open(whatsappGroupLink, '_blank');
-
+    const phoneNumber = localStorage.getItem('whatsappNumber');
+    // Check if the phone number is null or empty
+    if (!phoneNumber || phoneNumber.trim() === "") {
+        alert("Please update your WhatsApp number to post the message.");
+    } else {
+        // Post the result message to WhatsApp
+        const whatsappMessage = encodeURIComponent(resultMessage);
+        const whatsappGroupLink = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
+        window.open(whatsappGroupLink, '_blank');
+    }
     // Display the result
-    document.getElementById('result').textContent = `Your message: ${resultMessage}`;
+    document.getElementById('result').textContent = `Done with: ${resultMessage}`;
+    document.getElementById('copyButton').style.display = 'block';
 
     // Automatically reset the form after posting the message
     //setTimeout(function () {
@@ -175,20 +180,22 @@ document.getElementById('resetBtn').addEventListener('click', function () {
         emojiItems.forEach((item) => {
             item.value = 0;
         });
+        document.getElementById('result').textContent = "";
+        document.getElementById('copyButton').style.display = 'none';
         saveToLocalStorage();
     }
 });
 
 
-    // Function to show the popup
-        function showPhonePopup() {
-            const phpopup = document.createElement('div');
-            phpopup.classList.add('ph-popup');
+// Function to show the popup
+function showPhonePopup() {
+    const phpopup = document.createElement('div');
+    phpopup.classList.add('ph-popup');
 
-            const contentContainer = document.createElement('div');
-            contentContainer.classList.add('ph-popup-content');
+    const contentContainer = document.createElement('div');
+    contentContainer.classList.add('ph-popup-content');
 
-            contentContainer.innerHTML = `
+    contentContainer.innerHTML = `
                 <h2>Update Your WhatsApp Number</h2>
                 <p>This number will be used to post the completed prayer list to your WhatsApp number.</p>
                 <input type="text" id="phoneNumber" placeholder="Enter WhatsApp number (+919876543210)" value="${getPhoneNumber()}">
@@ -196,47 +203,69 @@ document.getElementById('resetBtn').addEventListener('click', function () {
                 <button class="btn-skip" onclick="skipPhonePopup()">Skip</button>
             `;
 
-            phpopup.appendChild(contentContainer);
-            document.body.appendChild(phpopup);
-        }
+    phpopup.appendChild(contentContainer);
+    document.body.appendChild(phpopup);
+}
 
-        // Function to save phone number to local storage
-        function savePhoneNumber() {
-            const phoneNumber = document.getElementById('phoneNumber').value.trim();
-            if (phoneNumber) {
-                localStorage.setItem('whatsappNumber', phoneNumber);
-                closePhonePopup();
-            } else {
-                alert('Please enter a valid phone number.');
-            }
-        }
+// Function to save phone number to local storage
+function savePhoneNumber() {
+    const phoneNumber = document.getElementById('phoneNumber').value.trim();
+    if (phoneNumber) {
+        localStorage.setItem('whatsappNumber', phoneNumber);
+        closePhonePopup();
+    } else {
+        alert('Please enter a valid phone number.');
+    }
+}
 
-        // Function to skip the popup and go to the main page
-        function skipPhonePopup() {
-            closePhonePopup();
-        }
+// Function to skip the popup and go to the main page
+function skipPhonePopup() {
+    closePhonePopup();
+}
 
-        // Function to close the popup
-        function closePhonePopup() {
-            const phpopup = document.querySelector('.ph-popup');
-            if (phpopup) {
-                phpopup.remove();
-            }
-        }
+// Function to close the popup
+function closePhonePopup() {
+    const phpopup = document.querySelector('.ph-popup');
+    if (phpopup) {
+        phpopup.remove();
+    }
+}
 
-        // Function to get phone number from local storage
-        function getPhoneNumber() {
-            return localStorage.getItem('whatsappNumber') || '';
-        }
+// Function to get phone number from local storage
+function getPhoneNumber() {
+    return localStorage.getItem('whatsappNumber') || '';
+}
 
-        // Show popup on page load if the phone number is not set
-        window.onload = function () {
-            if (!getPhoneNumber()) {
-                showPhonePopup();
-            }
-        };
+// Show popup on page load if the phone number is not set
+window.onload = function () {
+    if (!getPhoneNumber()) {
+        showPhonePopup();
+    }
+};
 
-        // Show popup when the phone icon is clicked
-        document.getElementById('phoneIcon').onclick = function () {
-            showPhonePopup();
-        };
+// Show popup when the phone icon is clicked
+document.getElementById('phoneIcon').onclick = function () {
+    showPhonePopup();
+};
+
+
+document.getElementById('copyButton').onclick = function () {
+    const resultDiv = document.getElementById('result');
+    const content = resultDiv.textContent || resultDiv.innerText;
+
+    // Create a temporary textarea element
+    const tempTextArea = document.createElement('textarea');
+    tempTextArea.value = content.replace('Done with: ', '');
+    document.body.appendChild(tempTextArea);
+
+    // Select the text and copy it to the clipboard
+    tempTextArea.select();
+    document.execCommand('copy');
+
+    // Remove the temporary textarea
+    document.body.removeChild(tempTextArea);
+
+    // Optional: Give feedback to the user
+    alert('Copied to clipboard');
+};
+

@@ -1,30 +1,4 @@
-/*
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-}
-*/
-/*.emoji-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}*/
 
-    /*.emoji-item label {
-        margin-right: 10px;
-    }
-
-    .emoji-item button {
-        margin-right: 5px;
-        padding: 5px 10px;
-        font-size: 16px;
-    }
-
-    .emoji-item input[type="text"] {
-        width: 50px;
-        text-align: center;
-        margin-right: 10px;
-    }*/
 
 #submitBtn {
     margin-top: 20px;
@@ -177,17 +151,18 @@ body {
 
 
 .ph-popup {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
 .ph-popup-content {
     background-color: #fff;
     padding: 20px;
@@ -196,6 +171,7 @@ body {
     max-width: 400px;
     width: 100%;
 }
+
     .ph-popup-content input {
         width: 100%;
         padding: 10px;
@@ -203,6 +179,7 @@ body {
         border: 1px solid #ccc;
         border-radius: 4px;
     }
+
     .ph-popup-content button {
         width: 100%;
         padding: 10px;
@@ -211,55 +188,43 @@ body {
         border-radius: 4px;
         cursor: pointer;
     }
-        .btn-save {
-            background-color: #28a745;
-            color: white;
-        }
-        .btn-skip {
-            background-color: #6c757d;
-            color: white;
-        }
-        /*.phone-icon {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #007bff;
-            color: white;
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 24px;
-            z-index: 1001;
-        }*/
 
-/*.phone-icon {
-    position: fixed;
-    top: 20px;*/ /* Distance from the top */
-    /*right: 20px;*/ /* Distance from the right */
-    /*background-color: #007bff;
+.btn-save {
+    background-color: #28a745;
     color: white;
-    padding: 10px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 24px;
-    z-index: 1001;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);*/ /* Optional: Add shadow for better visibility */
-    /*transition: background-color 0.3s ease;*/ /* Optional: Add hover effect */
-/*}
+}
 
-.phone-icon:hover {
-    background-color: #0056b3;*/ /* Darker blue on hover */
-/*}*/
+.btn-skip {
+    background-color: #6c757d;
+    color: white;
+}
 
+
+
+.top-bar {
+    display: flex;
+    justify-content: space-between; /* Space between h1 and icon */
+    align-items: center; /* Align items vertically centered */
+    padding: 10px 20px; /* Padding around the top bar */
+    background-color: #f7f9fc; /* Light background for the top bar */
+    border-bottom: 2px solid #007bff; /* Optional: Add a border at the bottom */
+}
+    
+    /* H1 header styling */
+    .top-bar h1 {
+        margin: 0; /* Remove default margin */
+        font-size: 24px; /* Font size for the header */
+        color: #333; /* Header color */
+    }
+
+/* Phone icon styling */
 .phone-icon {
-    display: inline-block;
-    background-color: #007bff;
-    color: white;
+    background-color: #25D366; /* Blue background #007bff;*/
+    color: white; /* White icon color */
     padding: 5px;
     border-radius: 50%;
     cursor: pointer;
     font-size: 16px; /* Smaller size */
-    margin: 10px 0; /* Margin at the top and bottom */
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Subtle shadow */
     transition: background-color 0.3s ease;
 }
@@ -268,9 +233,26 @@ body {
         background-color: #0056b3; /* Darker blue on hover */
     }
 
-.top-bar {
-    display: flex;
-    justify-content: flex-end; /* Align icon to the right */
-    padding: 10px; /* Padding around the top bar */
-    background-color: #f7f9fc; /* Light background for the top bar */
+    .phone-icon span {
+        width: 23px;
+        display: block;
+        padding-left: 5px;
+        font-size: 21px;
+    }
+
+
+#copyButton {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+#copyButton:hover {
+    background-color: #0056b3;
 }
