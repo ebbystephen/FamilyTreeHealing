@@ -153,16 +153,17 @@ document.getElementById('submitBtn').addEventListener('click', function () {
 
     //alert(resultMessage);
 
-    const phoneNumber = localStorage.getItem('whatsappNumber');
+    // const phoneNumber = localStorage.getItem('whatsappNumber');
     // Check if the phone number is null or empty
-    if (!phoneNumber || phoneNumber.trim() === "") {
+    /*if (!phoneNumber || phoneNumber.trim() === "") {
         alert("Please update your WhatsApp number to post the message.");
     } else {
+    */
         // Post the result message to WhatsApp
         const whatsappMessage = encodeURIComponent(resultMessage);
-        const whatsappGroupLink = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
+        const whatsappGroupLink = `https://wa.me/?text=${whatsappMessage}`;
         window.open(whatsappGroupLink, '_blank');
-    }
+    //}
     // Display the result
     document.getElementById('result').textContent = `Done with: ${resultMessage}`;
     document.getElementById('copyButton').style.display = 'block';
