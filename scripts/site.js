@@ -237,11 +237,13 @@ function getPhoneNumber() {
 }
 
 // Show popup on page load if the phone number is not set
+/*
 window.onload = function () {
     if (!getPhoneNumber()) {
         showPhonePopup();
     }
 };
+*/
 
 // Show popup when the phone icon is clicked
 document.getElementById('phoneIcon').onclick = function () {
