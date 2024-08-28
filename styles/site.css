@@ -1,16 +1,16 @@
-
+/*
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
 }
-
-.emoji-item {
+*/
+/*.emoji-item {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
-}
+}*/
 
-    .emoji-item label {
+    /*.emoji-item label {
         margin-right: 10px;
     }
 
@@ -24,7 +24,7 @@ body {
         width: 50px;
         text-align: center;
         margin-right: 10px;
-    }
+    }*/
 
 #submitBtn {
     margin-top: 20px;
@@ -59,3 +59,74 @@ body {
         opacity: 0.9;
     }
 
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f9fc;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.emoji-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+    .emoji-item:last-child {
+        border-bottom: none;
+    }
+
+    .emoji-item label {
+        flex: 2;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .emoji-item input[type="text"] {
+        width: 50px;
+        text-align: center;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin: 0 10px;
+        background-color: #f0f0f0;
+        color: #333;
+    }
+
+    .emoji-item button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+
+        .emoji-item button:hover {
+            background-color: #0056b3;
+        }
+
+        .emoji-item button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+.header {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007bff;
+    text-align: center;
+    margin-bottom: 20px;
+}
