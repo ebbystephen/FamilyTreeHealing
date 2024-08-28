@@ -266,6 +266,6 @@ document.getElementById('copyButton').onclick = function () {
     document.body.removeChild(tempTextArea);
 
     // Optional: Give feedback to the user
-    alert('Copied to clipboard');
+    //alert('Copied to clipboard');
 };
 
