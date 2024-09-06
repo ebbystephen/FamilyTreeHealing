@@ -209,7 +209,7 @@ body {
     background-color: #f7f9fc; /* Light background for the top bar */
     border-bottom: 2px solid #007bff; /* Optional: Add a border at the bottom */
 }
-    
+
     /* H1 header styling */
     .top-bar h1 {
         margin: 0; /* Remove default margin */
@@ -253,6 +253,46 @@ body {
     transition: background-color 0.3s ease;
 }
 
-#copyButton:hover {
-    background-color: #0056b3;
+    #copyButton:hover {
+        background-color: #0056b3;
+    }
+
+.tab {
+    overflow: hidden;
+    border-bottom: 1px solid #ccc;
 }
+
+    .tab button {
+        background-color: #f1f1f1;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 10px 20px;
+        transition: 0.3s;
+        font-size: 17px;
+    }
+
+        /* Change background color of tabs on hover */
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+            background-color: #007bff;
+            color: white;
+        }
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+    /* Show the first tab content by default */
+    .tabcontent.active {
+        display: block;
+    }
