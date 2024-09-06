@@ -138,11 +138,12 @@ body {
     padding: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     position: relative;
+    text-align:justify;
 }
 
 /* Close button (fixed at bottom) */
 .close-btn {
-    position: absolute;
+    position: fixed;
     bottom: 20px; /* Space from the bottom */
     left: 50%;
     transform: translateX(-50%);
