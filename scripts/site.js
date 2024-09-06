@@ -142,19 +142,22 @@ function showPopup(content) {
 
     // Create a close button
     const closeButton = document.createElement('button');
+    closeButton.classList.add('close-btn');
     closeButton.textContent = 'Close';
     closeButton.onclick = function () {
         document.body.removeChild(popup);
     };
 
     // Add the close button to the content container
-    contentContainer.appendChild(closeButton);
+    //contentContainer.appendChild(closeButton);
 
     // Add the close button to the popup
     popup.appendChild(contentContainer);
 
     // Append popup to body
     document.body.appendChild(popup);
+    document.body.appendChild(closeButton);
+
 }
 
 // Call the function to generate the form
