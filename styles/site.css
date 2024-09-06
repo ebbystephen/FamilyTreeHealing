@@ -263,14 +263,14 @@ body {
 }
 
     .tab button {
-        background-color: #f1f1f1;
+        background-color: gray;
         float: left;
         border: none;
         outline: none;
         cursor: pointer;
         padding: 10px 20px;
         transition: 0.3s;
-        font-size: 17px;
+        font-size: 10.5px;
     }
 
         /* Change background color of tabs on hover */
