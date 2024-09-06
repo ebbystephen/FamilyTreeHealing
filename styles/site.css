@@ -296,3 +296,12 @@ body {
     .tabcontent.active {
         display: block;
     }
+
+/* Media query for small screens */
+@media screen and (max-width: 600px) {
+    .tab button {
+        width: 100%;
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+}
