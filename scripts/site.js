@@ -153,14 +153,14 @@ function showPopup(content) {
     };
 
     // Add the close button to the content container
-    //contentContainer.appendChild(closeButton);
+    contentContainer.appendChild(closeButton);
 
     // Add the close button to the popup
     popup.appendChild(contentContainer);
 
     // Append popup to body
     document.body.appendChild(popup);
-    document.body.appendChild(closeButton);
+    //document.body.appendChild(closeButton);
 
 }
 
