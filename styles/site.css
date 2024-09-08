@@ -322,7 +322,7 @@ body {
 
 .close-icon{
    color:grey;
-   position:relative;
+   position:fixed;
    right:0px;
    top:0px;
 }
