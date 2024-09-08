@@ -542,6 +542,16 @@ function showPopup(content) {
     // Add the close button to the content container
     contentContainer.appendChild(closeButton);
 
+    const closeIcon = document.createElement('button');
+    closeIcon.classList.add('close-icon');
+    closeIcon.textContent = 'X';
+    closeIcon.onclick = function () {
+        document.body.removeChild(popup);
+    };
+
+    //Add the close icon to the popup
+    popup.appendChild(closeIcon);
+
     // Add the close button to the popup
     popup.appendChild(contentContainer);
 

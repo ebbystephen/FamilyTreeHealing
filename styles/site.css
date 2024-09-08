@@ -319,3 +319,10 @@ body {
     }
 }
 */
+
+.close-icon{
+   color:grey;
+   position:relative;
+   right:0px;
+   top:0px;
+}
